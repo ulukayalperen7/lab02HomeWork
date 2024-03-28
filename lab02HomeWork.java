@@ -15,6 +15,9 @@ class Ticket {
 
     public Ticket(City from, City to, Date date, int seat) {
 
+        if (from == null || to == null) {
+            throw new IllegalArgumentException("From and to cities cannot be null.");
+        }
         setDate(date);
         setSeat(seat);
         this.from = from;
@@ -23,10 +26,14 @@ class Ticket {
 
     public Ticket(City from, City to, int seat) {
 
+        if (from == null || to == null) {
+            throw new IllegalArgumentException("From and to cities cannot be null.");
+        }
         this.from = from;
         this.to = to;
         setSeat(seat);
         this.date = new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000);
+
     }
 
     public City getFrom() {
@@ -60,8 +67,13 @@ class City {
     private String name;
 
     public City(String postalCode, String name) {
+
+        if (postalCode == null || name == null) {
+            throw new IllegalArgumentException("Postal code and name cannot be null.");
+        }
         this.name = name;
         this.postalCode = postalCode;
+
     }
 
     public String getPostalCode() {
@@ -80,7 +92,9 @@ class Person {
     private String phoneNumber;
 
     public Person(String name, String surname, String phoneNumber) {
-
+        if (name == null || surname == null || phoneNumber == null) {
+            throw new IllegalArgumentException("Name, surname, and phone number cannot be null.");
+        }
         this.name = name;
         this.surname = surname;
         setPhoneNumber(phoneNumber);
